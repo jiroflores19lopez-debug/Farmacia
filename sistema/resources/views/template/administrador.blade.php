@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="San Juan – Sistema de Venta de Medicamentos">
   <title>FARM SJB | @yield('title')</title>
+  <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
+  <meta name="theme-color" content="#0d6efd">
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
@@ -14,10 +16,10 @@
 <div id="app-wrapper" class="d-flex">
 
   <!-- sidebar -->
-  @include('partials.sidebar')
+  @include('Partials.sidebar')
   <div class="main-wrapper d-flex flex-column flex-grow-1 overflow-hidden">
     <!-- header -->
-  @include('partials.header')
+  @include('Partials.header')
 
     <main class="app-content flex-grow-1 overflow-y-auto p-3 p-lg-4">
       <div class="container-fluid p-0">
@@ -49,7 +51,7 @@
             (KPIs, gráficos, tablas, formularios, etc.)
             En Laravel: 
         -->
-            @yield('content')
+@yield('content')
       </div>
     </main>
 
@@ -57,10 +59,16 @@
 </div>
 
 <!-- MODAL — Confirmar Cierre de Sesión -->
-@include('partials.modal-logout')
+@include('Partials.modal-logout')
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('{{ asset('sw.js') }}'));
+}
+</script>
+@stack('scripts')
 
 
 </body>

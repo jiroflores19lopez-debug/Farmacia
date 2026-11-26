@@ -2,9 +2,24 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 
+#[Fillable(['customer_id', 'user_id', 'date', 'total', 'igv'])]
 class Sale extends Model
 {
-    //
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function details()
+    {
+        return $this->hasMany(DetailSale::class);
+    }
 }

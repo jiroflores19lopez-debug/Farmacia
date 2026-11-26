@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('role_id')->after('id')->constrained('roles')->restrictOnDelete();
             $table->char('dni', 8)->unique()->after('name');
-            $table->string('phone', 15)->nullable()->after('dni'); //telefono
-            $table->string('tuition', 20)->nullable()->after('phone'); //colegiatura
+            $table->string('phone', 15)->nullable()->after('dni'); // telefono
+            $table->string('tuition', 20)->nullable()->after('phone'); // colegiatura
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('rol_id');
+            $table->dropConstrainedForeignId('role_id');
             $table->dropUnique(['dni']);
             $table->dropColumn(['dni', 'phone', 'tuition']);
         });

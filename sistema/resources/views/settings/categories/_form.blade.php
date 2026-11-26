@@ -1,18 +1,18 @@
 <div class="mb-3">
-                    <label for="name" class="form-label">Nombre de la categoria</label>
-                    <input type="text" name="nombre" id="name"
-                        class="form-control @error ('nombre') is-invalid @enderror"
-                        value="{{ old('nombre', $category->nombre ?? '') }}">
+                    <label for="nombre" class="form-label">Nombre de la categoria</label>
+                    <input type="text" name="nombre" id="nombre"
+                        class="form-control @error('nombre') is-invalid @enderror"
+                        value="{{ old('nombre', $category->nombre ?? '') }}" maxlength="50" required>
                 @error('nombre')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
 
                 </div>
-                
+
                 <div class="mb-3">
-                    <label for="description" class="form-label">Descripcion</label>
-                    <textarea name="descripcion" id="description" rows="3"
-                            class="form-control  @error ('descripcion') is-invalid @enderror">"{{ old('descripcion', $category->descripcion ?? '') }}"</textarea>
+                    <label for="descripcion" class="form-label">Descripcion</label>
+                    <textarea name="descripcion" id="descripcion" rows="3"
+                            class="form-control @error('descripcion') is-invalid @enderror" maxlength="255">{{ old('descripcion', $category->descripcion ?? '') }}</textarea>
                 @error('descripcion')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -20,4 +20,3 @@
                 
                 <button type="submit" class="btn btn-primary text-white">Guardar</button>
                 <a href="{{ route('categories.index') }}" class="btn btn-secondary">Cancelar</a>
-
